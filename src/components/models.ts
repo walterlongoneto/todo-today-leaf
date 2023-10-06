@@ -14,6 +14,7 @@ export interface Day {
 }
 
 export interface Task {
+  id: number,
   description: string;
   status: string;
   totalPomodoros: number;
@@ -21,8 +22,13 @@ export interface Task {
   updatedAt?: Date;
 }
 
+export enum PomodoroStatus {
+  Pending = "pending",
+  Completed = "completed"
+}
+
 export interface Pomodoro {
   secondPlanning: boolean;
-  status: string;
+  status: PomodoroStatus;
   updatedAt: Date | null;
 }
