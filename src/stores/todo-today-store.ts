@@ -26,4 +26,7 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
   }
 
   return { tasks, startDay, saveTask }
+},
+{
+  persist: true
 })
