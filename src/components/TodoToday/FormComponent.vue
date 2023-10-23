@@ -75,7 +75,7 @@ const props = defineProps<{
 const emits = defineEmits(['submit'])
 
 const description = ref<string>(props.task.description)
-const totalPomodoros = ref<number>(props.task.totalPomodoros)
+const totalPomodoros = ref<number>(props.task.pomodoros.length)
 
 const onSubmit = () => {
   if (props.task.status == TaskStatus.Pending) {

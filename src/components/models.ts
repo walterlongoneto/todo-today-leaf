@@ -23,7 +23,6 @@ export interface Task {
   id?: number;
   description: string;
   status: TaskStatus;
-  totalPomodoros: number;
   pomodoros: Array<Pomodoro>;
   updatedAt?: Date;
 }

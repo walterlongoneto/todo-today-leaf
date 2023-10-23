@@ -8,7 +8,6 @@ export const useTaskStore = defineStore('task', () => {
   function buildTask(attrs = {}): Task {
     return {
       description: '',
-      totalPomodoros: 0,
       pomodoros: [],
       status: TaskStatus.Pending,
       ...attrs
@@ -18,7 +17,6 @@ export const useTaskStore = defineStore('task', () => {
   function saveTask(task: Task, description: string, totalPomodoros: number) {
     task.description = description
     task.updatedAt = new Date()
-    task.totalPomodoros = totalPomodoros
     if (totalPomodoros != task.pomodoros.length) {
       if (totalPomodoros > task.pomodoros.length) {
         const started = task.pomodoros.find(pomodoro => pomodoro.status == PomodoroStatus.Completed) != undefined
