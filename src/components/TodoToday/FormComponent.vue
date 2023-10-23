@@ -10,9 +10,10 @@
       v-model="totalPomodoros"
       :label="$t('todoToday.form.totalPomodoros')"
       type="number"
-      style="max-width: 200px"
+      style="max-width: 300px"
       :rules="[
         val => val && val.length > 0 || $t('form.errors.blank'),
+        val => isTotalGreaterThanConcluded(val) || $t('task.errors.totalGreatherThanConcluded')
       ]"
     />
 
@@ -23,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { Task } from 'components/models'
+import { Pomodoro, PomodoroStatus, Task } from 'components/models'
 import { useTodoTodayStore } from 'stores/todo-today-store'
 import { ref } from 'vue'
 
@@ -39,5 +40,13 @@ const totalPomodoros = ref<number>(props.task.totalPomodoros)
 const onSubmit = () => {
   store.saveTask(props.task, description.value, totalPomodoros.value)
   emits('submit')
+}
+
+function isTotalGreaterThanConcluded(total: number) : boolean {
+  const concluded: Array<Pomodoro> = props.task.pomodoros.filter(pomodoro => {
+    return pomodoro.status == PomodoroStatus.Completed
+  })
+
+  return total >= concluded.length
 }
 </script>

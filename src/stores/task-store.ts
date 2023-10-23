@@ -19,8 +19,13 @@ export const useTaskStore = defineStore('task', () => {
           task.pomodoros.push(pomodoro)
         }
       } else {
-        const sliceEnd = task.pomodoros.length - totalPomodoros
-        task.pomodoros.splice(0, sliceEnd)
+        let drift = task.pomodoros.length - totalPomodoros
+        for (let i = 0; i < task.pomodoros.length; i++) {
+          if (drift > 0 && task.pomodoros[i].status != PomodoroStatus.Completed) {
+            task.pomodoros.splice(i, 1)
+            drift -= 1
+          }
+        }
       }
     }
   }
