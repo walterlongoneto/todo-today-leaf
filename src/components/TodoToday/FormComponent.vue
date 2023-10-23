@@ -1,5 +1,5 @@
 <template>
-  <q-form @submit="onSubmit">
+  <q-form @submit.prevent="onSubmit">
     <q-input
       v-model="description"
       :label="$t('todoToday.form.description')"
@@ -11,7 +11,9 @@
       :label="$t('todoToday.form.totalPomodoros')"
       type="number"
       style="max-width: 200px"
-      :rules="[ val => val && val.length > 0 || $t('form.errors.blank')]"
+      :rules="[
+        val => val && val.length > 0 || $t('form.errors.blank'),
+      ]"
     />
 
     <div class="q-mt-sm">
@@ -21,12 +23,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { Task } from 'components/models'
+import { useTodoTodayStore } from 'stores/todo-today-store'
 
-const description = ref();
-const totalPomodoros = ref();
+const store = useTodoTodayStore()
+const props = defineProps<{
+  task: Task
+}>()
+const emits = defineEmits(['submit'])
 
-function onSubmit() {
-  console.log('passou submit');
+const description = ref<string>(props.task.description)
+const totalPomodoros = ref<number>(props.task.totalPomodoros)
+
+const onSubmit = () => {
+  store.saveTask(props.task, description.value, totalPomodoros.value)
+  emits('submit')
 }
 </script>

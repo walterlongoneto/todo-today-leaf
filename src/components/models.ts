@@ -14,17 +14,17 @@ export interface Day {
 }
 
 export interface Task {
-  id: number,
+  id?: number;
   description: string;
-  status: string;
+  status?: string;
   totalPomodoros: number;
   pomodoros: Array<Pomodoro>;
   updatedAt?: Date;
 }
 
 export enum PomodoroStatus {
-  Pending = "pending",
-  Completed = "completed"
+  Pending = 'pending',
+  Completed = 'completed'
 }
 
 export interface Pomodoro {
