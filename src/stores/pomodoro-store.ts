@@ -7,5 +7,15 @@ export const usePomodoroStore = defineStore('pomodoro', () => {
     return { secondPlanning, status: PomodoroStatus.Pending, updatedAt: new Date() }
   }
 
-  return { buildPomodoro }
+  function completePomodoro(pomodoro: Pomodoro) {
+    pomodoro.updatedAt = new Date()
+    pomodoro.status = PomodoroStatus.Completed
+  }
+
+  function pendingPomodoro(pomodoro: Pomodoro) {
+    pomodoro.updatedAt = new Date()
+    pomodoro.status = PomodoroStatus.Pending
+  }
+
+  return { buildPomodoro, completePomodoro, pendingPomodoro }
 })

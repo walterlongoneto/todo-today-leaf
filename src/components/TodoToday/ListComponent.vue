@@ -1,14 +1,15 @@
 <template>
   <div>
     <q-list bordered separator>
-      <q-item
-        v-for="(task, index) in store.tasks"
-        :key="`task-${index}`"
-        clickable
-        @click="onItemClick(task)"
-      >
+      <q-item v-for="(task, index) in store.tasks" :key="`task-${index}`">
         <q-item-section>
-          {{ task.description }}
+          <q-btn
+            flat
+            no-caps
+            align="left"
+            :label="task.description"
+            @click="onItemClick(task)"
+          />
         </q-item-section>
         <q-item-section side>
           <task-status-progress :task="task"></task-status-progress>
