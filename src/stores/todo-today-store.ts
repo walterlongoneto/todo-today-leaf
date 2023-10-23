@@ -25,7 +25,14 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
     }
   }
 
-  return { startedAt, finishedAt, tasks, saveTask, reset }
+  function removeTask(task: Task) {
+    const taskIndex = tasks.value.findIndex(internalTask => internalTask.id == task.id)
+    if (taskIndex > -1) {
+      tasks.value.splice(taskIndex, 1)
+    }
+  }
+
+  return { startedAt, finishedAt, tasks, saveTask, removeTask, reset }
 },
 {
   persist: true

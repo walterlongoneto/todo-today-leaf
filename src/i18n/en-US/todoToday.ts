@@ -1,7 +1,7 @@
 export default {
-  title: 'Tasks',
+  title: 'Tarefas',
   form: {
-    description: 'Description',
+    description: 'Descrição',
     totalPomodoros: 'Pomodoros'
   }
 }

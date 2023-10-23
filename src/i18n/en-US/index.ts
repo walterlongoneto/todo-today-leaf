@@ -3,12 +3,12 @@
 
 import form from './form'
 import todoToday from './todoToday'
-import task from './task';
+import task from './task'
 
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful',
+  failed: 'Falha!',
+  success: 'Sucesso!',
   form,
   todoToday,
   task
-};
+}

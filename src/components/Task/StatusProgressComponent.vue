@@ -9,11 +9,13 @@
       @click="handlePomodoroClick(pomodoro)"
       size="md"
     />
+    <task-status-component :task="task" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Task, Pomodoro, PomodoroStatus } from 'components/models'
+import TaskStatusComponent from 'components/Task/StatusComponent.vue'
+import { Task, TaskStatus, Pomodoro, PomodoroStatus } from 'components/models'
 import { usePomodoroStore } from 'src/stores/pomodoro-store'
 
 const props = defineProps<{
@@ -24,7 +26,6 @@ const pomodoroStore = usePomodoroStore()
 
 const getPomodoroIcon = (pomodoro: Pomodoro): string => {
   if (pomodoro.status ==  PomodoroStatus.Pending) {
-
     return pomodoro.secondPlanning ? 'radio_button_unchecked' : 'check_box_outline_blank'
   } else {
     return pomodoro.secondPlanning ? 'check_circle' : 'check_box'
@@ -32,10 +33,13 @@ const getPomodoroIcon = (pomodoro: Pomodoro): string => {
 }
 
 function handlePomodoroClick(pomodoro: Pomodoro): void {
-  if (pomodoro.status == PomodoroStatus.Pending) {
-    pomodoroStore.completePomodoro(pomodoro)
-  } else {
-    pomodoroStore.pendingPomodoro(pomodoro)
+  if (props.task.status == TaskStatus.Pending) {
+    if (pomodoro.status == PomodoroStatus.Pending) {
+      pomodoroStore.completePomodoro(pomodoro)
+    } else {
+      pomodoroStore.pendingPomodoro(pomodoro)
+    }
   }
+
 }
 </script>

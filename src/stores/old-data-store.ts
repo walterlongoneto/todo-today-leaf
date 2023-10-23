@@ -8,7 +8,8 @@ export const useOldDataStore = defineStore('oldData', () => {
   const days = ref<Array<Day>>([])
 
   function finishTheDay() {
-    if (new Date() > new Date(todoTodayStore.startedAt)) {
+    const startedAt = new Date(todoTodayStore.startedAt)
+    if (new Date() > new Date(startedAt.getFullYear(), startedAt.getMonth(), startedAt.getDate(), 23, 59)) {
       const day: Day = {
         startedAt: todoTodayStore.startedAt,
         finishedAt: todoTodayStore.finishedAt,

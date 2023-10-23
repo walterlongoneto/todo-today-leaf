@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-list bordered separator>
-      <q-item v-for="(task, index) in store.tasks" :key="`task-${index}`">
+      <q-item v-for="(task, index) in todoTodayStore.tasks" :key="`task-${index}`">
         <q-item-section>
           <q-btn
             flat
@@ -35,12 +35,14 @@
 import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue'
 import { Task } from 'components/models'
 import { useTodoTodayStore } from 'stores/todo-today-store'
+import { useTaskStore } from 'src/stores/task-store'
 import { ref } from 'vue'
 import FormComponent from './FormComponent.vue'
 
-const store = useTodoTodayStore();
+const todoTodayStore = useTodoTodayStore()
+const taskStore = useTaskStore()
 
-let selectedTask = ref<Task>({ description: '', totalPomodoros: 0, pomodoros: [] })
+let selectedTask = ref<Task>(taskStore.buildTask())
 const showModal = ref<boolean>(false)
 
 const onItemClick = (task: Task) => {
@@ -49,7 +51,7 @@ const onItemClick = (task: Task) => {
 }
 
 const onSubmit = () => {
-  selectedTask = ref<Task>({ description: '', totalPomodoros: 0, pomodoros: [] })
+  selectedTask = ref<Task>(taskStore.buildTask())
   showModal.value = false
 }
 </script>

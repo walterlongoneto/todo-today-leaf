@@ -1,9 +1,10 @@
 export default {
   buttons: {
-    submit: "Save"
+    submit: "Salvar",
+    delete: "Remover"
   },
   errors: {
-    blank: "Please type something",
-    greaterThanZero: "Please use value greater than zero"
+    blank: "não pode ficar em branco",
+    greaterThanZero: "dever ser maior que zero"
   }
 }

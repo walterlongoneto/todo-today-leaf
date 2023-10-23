@@ -1,9 +1,19 @@
 import { defineStore } from 'pinia'
-import { Pomodoro, PomodoroStatus, Task } from 'src/components/models'
+import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'src/components/models'
 import { usePomodoroStore } from './pomodoro-store'
 
 export const useTaskStore = defineStore('task', () => {
   const pomodoroStore = usePomodoroStore()
+
+  function buildTask(attrs = {}): Task {
+    return {
+      description: '',
+      totalPomodoros: 0,
+      pomodoros: [],
+      status: TaskStatus.Pending,
+      ...attrs
+    }
+  }
 
   function saveTask(task: Task, description: string, totalPomodoros: number) {
     task.description = description
@@ -30,5 +40,20 @@ export const useTaskStore = defineStore('task', () => {
     }
   }
 
-  return { saveTask }
+  function completeTask(task: Task) {
+    task.status = TaskStatus.Completed
+    task.updatedAt = new Date()
+  }
+
+  function cancelTask(task: Task) {
+    task.status = TaskStatus.Canceled
+    task.updatedAt = new Date()
+  }
+
+  function resetTask(task: Task) {
+    task.status = TaskStatus.Pending
+    task.updatedAt = new Date()
+  }
+
+  return { buildTask, saveTask, completeTask, cancelTask, resetTask }
 })
