@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import FormComponent from 'components/TodoToday/FormComponent.vue'
-import { Task } from 'components/models'
+import FormComponent from 'components/TodoToday/FormComponent.vue';
+import { Task } from 'components/models';
+import { ref } from 'vue';
 
 let showModal = ref<boolean>(false)
 

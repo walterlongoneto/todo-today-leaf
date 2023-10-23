@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Task } from 'components/models'
 import { useTodoTodayStore } from 'stores/todo-today-store'
+import { ref } from 'vue'
 
 const store = useTodoTodayStore()
 const props = defineProps<{

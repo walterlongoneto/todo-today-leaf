@@ -31,11 +31,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue'
 import { Task } from 'components/models'
 import { useTodoTodayStore } from 'stores/todo-today-store'
+import { ref } from 'vue'
 import FormComponent from './FormComponent.vue'
-import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue'
 
 const store = useTodoTodayStore();
 
