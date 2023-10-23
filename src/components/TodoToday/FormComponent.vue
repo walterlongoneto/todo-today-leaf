@@ -60,10 +60,10 @@
 </template>
 
 <script setup lang="ts">
-import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'components/models'
-import { useTodoTodayStore } from 'stores/todo-today-store'
-import { useTaskStore } from 'stores/task-store'
-import { ref } from 'vue'
+import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'components/models';
+import { useTaskStore } from 'stores/task-store';
+import { useTodoTodayStore } from 'stores/todo-today-store';
+import { ref } from 'vue';
 
 const store = useTodoTodayStore()
 const taskStore = useTaskStore()

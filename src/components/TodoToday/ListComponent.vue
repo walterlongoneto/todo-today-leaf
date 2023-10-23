@@ -32,12 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue'
-import { Task } from 'components/models'
-import { useTodoTodayStore } from 'stores/todo-today-store'
-import { useTaskStore } from 'src/stores/task-store'
-import { ref } from 'vue'
-import FormComponent from './FormComponent.vue'
+import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue';
+import { Task } from 'components/models';
+import { useTaskStore } from 'src/stores/task-store';
+import { useTodoTodayStore } from 'stores/todo-today-store';
+import { ref } from 'vue';
+import FormComponent from './FormComponent.vue';
 
 const todoTodayStore = useTodoTodayStore()
 const taskStore = useTaskStore()

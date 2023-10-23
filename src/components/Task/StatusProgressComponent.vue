@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import TaskStatusComponent from 'components/Task/StatusComponent.vue'
-import { Task, TaskStatus, Pomodoro, PomodoroStatus } from 'components/models'
-import { usePomodoroStore } from 'src/stores/pomodoro-store'
+import TaskStatusComponent from 'components/Task/StatusComponent.vue';
+import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'components/models';
+import { usePomodoroStore } from 'src/stores/pomodoro-store';
 
 const props = defineProps<{
   task: Task

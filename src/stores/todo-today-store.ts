@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { Task } from 'src/components/models'
-import { ref } from 'vue'
-import { useTaskStore } from './task-store'
+import { defineStore } from 'pinia';
+import { Task } from 'src/components/models';
+import { ref } from 'vue';
+import { useTaskStore } from './task-store';
 
 export const useTodoTodayStore = defineStore('todoToday', () => {
   const taskStore = useTaskStore()

@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { useTodoTodayStore } from './todo-today-store'
-import { Day } from 'src/components/models'
+import { defineStore } from 'pinia';
+import { Day } from 'src/components/models';
+import { ref } from 'vue';
+import { useTodoTodayStore } from './todo-today-store';
 
 export const useOldDataStore = defineStore('oldData', () => {
   const todoTodayStore = useTodoTodayStore()

@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'src/components/models'
-import { usePomodoroStore } from './pomodoro-store'
+import { defineStore } from 'pinia';
+import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'src/components/models';
+import { usePomodoroStore } from './pomodoro-store';
 
 export const useTaskStore = defineStore('task', () => {
   const pomodoroStore = usePomodoroStore()

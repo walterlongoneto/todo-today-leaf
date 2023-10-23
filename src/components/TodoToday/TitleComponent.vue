@@ -20,14 +20,16 @@
 <script setup lang="ts">
 import FormComponent from 'components/TodoToday/FormComponent.vue';
 import { Task } from 'components/models';
+import { useTaskStore } from 'src/stores/task-store';
 import { ref } from 'vue';
 
-let showModal = ref<boolean>(false)
+const taskStore = useTaskStore()
 
-let task = ref<Task>({ description: '', totalPomodoros: 0, pomodoros: []})
+const showModal = ref<boolean>(false)
+const task = ref<Task>(taskStore.buildTask())
 
 const clearTask = () => {
-  task = ref<Task>({ description: '', totalPomodoros: 0, pomodoros: []})
+  task.value = taskStore.buildTask()
 }
 
 const onAddClick = () => {

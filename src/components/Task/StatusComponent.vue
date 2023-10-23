@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Task, TaskStatus } from '../models'
+import { Task, TaskStatus } from '../models';
 
 const props = defineProps<{
   task: Task
