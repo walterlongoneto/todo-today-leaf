@@ -8,8 +8,8 @@ export interface Meta {
 }
 
 export interface Day {
-  startedAt: Date | null;
-  finishedAt: Date | null;
+  startedAt: Date;
+  finishedAt?: Date
   tasks: Array<Task>;
 }
 
@@ -30,5 +30,5 @@ export enum PomodoroStatus {
 export interface Pomodoro {
   secondPlanning: boolean;
   status: PomodoroStatus;
-  updatedAt: Date | null;
+  updatedAt?: Date;
 }

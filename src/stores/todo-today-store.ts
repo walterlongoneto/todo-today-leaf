@@ -6,14 +6,14 @@ import { useTaskStore } from './task-store'
 export const useTodoTodayStore = defineStore('todoToday', () => {
   const taskStore = useTaskStore()
 
-  const startedAt = ref()
+  const startedAt = ref<Date>(new Date())
   const finishedAt = ref()
   const tasks = ref<Array<Task>>([])
 
-  function startDay() {
-    if (startedAt.value == null) {
-      startedAt.value = new Date()
-    }
+  function reset() {
+    startedAt.value = new Date()
+    finishedAt.value = null
+    tasks.value = []
   }
 
   function saveTask(task: Task, description: string, totalPomodoros: number) {
@@ -25,7 +25,7 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
     }
   }
 
-  return { tasks, startDay, saveTask }
+  return { startedAt, finishedAt, tasks, saveTask, reset }
 },
 {
   persist: true

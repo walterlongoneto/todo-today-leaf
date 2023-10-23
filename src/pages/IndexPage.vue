@@ -6,6 +6,11 @@
 </template>
 
 <script setup lang="ts">
-import TitleComponent from 'components/TodoToday/TitleComponent.vue'
 import ListComponent from 'components/TodoToday/ListComponent.vue';
+import TitleComponent from 'components/TodoToday/TitleComponent.vue';
+import { useOldDataStore } from 'src/stores/old-data-store';
+
+const oldDataStore = useOldDataStore()
+
+oldDataStore.finishTheDay()
 </script>
