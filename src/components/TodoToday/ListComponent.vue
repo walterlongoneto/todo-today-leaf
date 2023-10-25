@@ -18,7 +18,7 @@
     </q-list>
 
     <q-dialog v-model="showModal">
-      <q-card style="width: 500px">
+      <q-card class="full-width">
         <q-card-section>
           <h3>Editar Task</h3>
         </q-card-section>
