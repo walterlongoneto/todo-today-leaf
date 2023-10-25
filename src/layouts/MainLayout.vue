@@ -12,10 +12,12 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          <q-btn no-caps flat @click="$router.push('/')">Todo Today Leaf</q-btn>
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>
+          <q-btn no-caps flat @click="$router.push('/completed')">Concluídos</q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 

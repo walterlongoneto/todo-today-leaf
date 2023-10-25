@@ -9,7 +9,7 @@ export interface Meta {
 
 export interface Day {
   startedAt: Date;
-  finishedAt?: Date
+  finishedAt?: Date;
   tasks: Array<Task>;
 }
 

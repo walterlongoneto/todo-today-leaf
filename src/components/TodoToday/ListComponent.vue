@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-list bordered separator>
-      <q-item v-for="(task, index) in todoTodayStore.tasks" :key="`task-${index}`">
+      <q-item v-for="(task, index) in props.tasks" :key="`task-${index}`">
         <q-item-section>
           <q-btn
             flat
@@ -12,7 +12,7 @@
           />
         </q-item-section>
         <q-item-section side>
-          <task-status-progress :task="task"></task-status-progress>
+          <task-status-progress :task="task" :readonly="props.readonly"></task-status-progress>
         </q-item-section>
       </q-item>
     </q-list>
@@ -35,19 +35,28 @@
 import TaskStatusProgress from 'components/Task/StatusProgressComponent.vue';
 import { Task } from 'components/models';
 import { useTaskStore } from 'src/stores/task-store';
-import { useTodoTodayStore } from 'stores/todo-today-store';
 import { ref } from 'vue';
 import FormComponent from './FormComponent.vue';
 
-const todoTodayStore = useTodoTodayStore()
+interface Props {
+  tasks: Array<Task>;
+  readonly?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  readonly: true
+})
+
 const taskStore = useTaskStore()
 
 let selectedTask = ref<Task>(taskStore.buildTask())
 const showModal = ref<boolean>(false)
 
 const onItemClick = (task: Task) => {
-  selectedTask.value = task
-  showModal.value = true
+  if (!props.readonly) {
+    selectedTask.value = task
+    showModal.value = true
+  }
 }
 
 const onSubmit = () => {

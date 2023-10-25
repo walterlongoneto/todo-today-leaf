@@ -37,7 +37,7 @@
         v-show="task.id && task.status == TaskStatus.Pending"
         class="q-mr-sm"
         :label="$t('task.form.buttons.complete')"
-        color="secondary"
+        color="green"
         @click="onComplete"
       />
       <q-btn

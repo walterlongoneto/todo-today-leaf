@@ -18,9 +18,14 @@ import TaskStatusComponent from 'components/Task/StatusComponent.vue';
 import { Pomodoro, PomodoroStatus, Task, TaskStatus } from 'components/models';
 import { usePomodoroStore } from 'src/stores/pomodoro-store';
 
-const props = defineProps<{
-  task: Task
-}>()
+interface Props {
+  task: Task;
+  readonly?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  readonly: true
+})
 
 const pomodoroStore = usePomodoroStore()
 
@@ -33,7 +38,7 @@ const getPomodoroIcon = (pomodoro: Pomodoro): string => {
 }
 
 function handlePomodoroClick(pomodoro: Pomodoro): void {
-  if (props.task.status == TaskStatus.Pending) {
+  if (!props.readonly && props.task.status == TaskStatus.Pending) {
     if (pomodoro.status == PomodoroStatus.Pending) {
       pomodoroStore.completePomodoro(pomodoro)
     } else {

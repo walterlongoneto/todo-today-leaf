@@ -4,11 +4,13 @@
 import form from './form'
 import todoToday from './todoToday'
 import task from './task'
+import concluded from './concluded'
 
 export default {
   failed: 'Falha!',
   success: 'Sucesso!',
   form,
   todoToday,
-  task
+  task,
+  concluded
 }
