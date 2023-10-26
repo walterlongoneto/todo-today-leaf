@@ -13,6 +13,11 @@ export interface Day {
   tasks: Array<Task>;
 }
 
+export interface DayCount {
+  planned: number;
+  executed: number;
+}
+
 export enum TaskStatus {
   Pending = 'pending',
   Completed = 'completed',

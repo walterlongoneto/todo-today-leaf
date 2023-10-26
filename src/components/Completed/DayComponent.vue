@@ -1,7 +1,11 @@
 <template>
   <q-card class="q-mb-md">
     <q-card-section>
-      <div class="text-h6">{{ startedAt }}</div>
+      <div class="text-h3">{{ startedAt }}</div>
+    </q-card-section>
+
+    <q-card-section>
+      <todo-today-counter-component :day="props.day" />
     </q-card-section>
 
     <q-card-section>
@@ -12,6 +16,7 @@
 
 <script setup lang="ts">
 import TodoTodayListComponent from 'components/TodoToday/ListComponent.vue';
+import TodoTodayCounterComponent from 'components/TodoToday/CounterComponent.vue';
 import { Day } from '../models';
 import { computed } from 'vue';
 
