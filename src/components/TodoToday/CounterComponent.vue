@@ -2,7 +2,7 @@
   <q-card-section>
     <q-chip>
       <q-avatar color="primary" text-color="white">{{ dayCount.planned }}</q-avatar>
-      Planejado
+      Pendente
     </q-chip>
 
     <q-chip>
