@@ -1,6 +1,7 @@
 <template>
   <q-form @submit.prevent="onSubmit">
     <q-input
+      autofocus
       v-model="description"
       :label="$t('todoToday.form.description')"
       :rules="[ val => val && val.length > 0 || $t('form.errors.blank')]"
@@ -12,7 +13,7 @@
       type="number"
       style="max-width: 300px"
       :rules="[
-        val => val && val.length > 0 || $t('form.errors.blank'),
+        val => val > 0 || $t('form.errors.blank'),
         val => isTotalGreaterThanConcluded(val) || $t('task.errors.totalGreatherThanConcluded')
       ]"
     />
