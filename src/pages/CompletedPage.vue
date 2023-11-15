@@ -2,8 +2,11 @@
   <q-page padding>
     <h1>{{ $t('concluded.title') }}</h1>
 
+    Filtros <q-toggle v-model="showFilter" />
+
     <q-date
       v-model="filter"
+      v-show="showFilter"
       class="q-mb-md"
       minimal
       range
@@ -21,4 +24,5 @@ import { ref } from 'vue';
 const oldDataStore = useOldDataStore()
 
 const filter = ref()
+const showFilter = ref<boolean>(false)
 </script>
