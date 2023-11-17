@@ -7,14 +7,25 @@ export const useOldDataStore = defineStore('oldData', () => {
   const todoTodayStore = useTodoTodayStore()
   const days = ref<Array<Day>>([])
 
-  function filterDaysByDate(filter: { from: string; to: string }): Array<Day> {
-    if (filter && filter.from != '' && filter.to != '') {
+  function filterDaysByDate(filter: any): Array<Day> {
+    console.log("passou filter ", filter)
+    if (filter) {
+      let from:Date
+      let to:Date
+
+      if (filter.from && filter.to) {
+        from = new Date(filter.from)
+        to = new Date(filter.to)
+      } else {
+        from = new Date(filter)
+        to = new Date(filter)
+      }
+
+      to.setHours(23)
+      to.setMinutes(59)
+
       return days.value.filter(day => {
         const startedAt = new Date(day.startedAt)
-        const from = new Date(filter.from)
-        const to = new Date(filter.to)
-        to.setHours(23)
-        to.setMinutes(59)
 
         console.log(from, to)
 
