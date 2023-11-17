@@ -1,5 +1,9 @@
 <template>
   <div>
+    <q-tooltip no-parent-event v-model="showCopyTooltip">
+      Copiado!
+    </q-tooltip>
+
     <q-list bordered separator>
       <q-item v-for="(task, index) in props.tasks" :key="`task-${index}`">
         <q-item-section>
@@ -51,11 +55,25 @@ const taskStore = useTaskStore()
 
 let selectedTask = ref<Task>(taskStore.buildTask())
 const showModal = ref<boolean>(false)
+const showCopyTooltip = ref<boolean>(false)
+
+const copyContent = async (text: string) => {
+  try {
+    showCopyTooltip.value = true
+    await navigator.clipboard.writeText(text)
+    await new Promise(_resolve => setTimeout(_resolve, 1000))
+    showCopyTooltip.value = false
+  } catch (err) {
+    console.error('Failed to copy: ', err);
+  }
+}
 
 const onItemClick = (task: Task) => {
   if (!props.readonly) {
     selectedTask.value = task
     showModal.value = true
+  } else {
+    copyContent(task.description)
   }
 }
 
