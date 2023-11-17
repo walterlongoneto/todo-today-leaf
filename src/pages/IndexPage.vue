@@ -1,10 +1,10 @@
 <template>
   <q-page padding>
     <title-component></title-component>
-    <q-card class="q-mb-md">
+    <q-card flat class="q-mb-md">
       <counter-component :day="todoTodayStore.getCurrentDay()"></counter-component>
     </q-card>
-    <list-component :tasks="todoTodayStore.tasks" :readonly="false"></list-component>
+    <list-component :tasks="todoTodayStore.sortedTasks" :readonly="false"></list-component>
   </q-page>
 </template>
 

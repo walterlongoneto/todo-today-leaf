@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { Day, DayCount, PomodoroStatus, Task } from 'src/components/models';
-import { ref } from 'vue';
+import { Day, DayCount, PomodoroStatus, Task, TaskStatus } from 'src/components/models';
+import { computed, ref } from 'vue';
 import { useTaskStore } from './task-store';
 
 export const useTodoTodayStore = defineStore('todoToday', () => {
@@ -10,12 +10,28 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
   const finishedAt = ref()
   const tasks = ref<Array<Task>>([])
 
+  const sortedTasks = computed<Array<Task>>(() => {
+    return tasks.value.sort((t1, t2) => {
+      if (t1.status == t2.status) {
+        return 0
+      } else {
+        if (t1.status == TaskStatus.Completed && t2.status != TaskStatus.Completed) {
+          return 1
+        } else {
+          return -1
+        }
+      }
+    })
+  })
+
   function getDayCount(day: Day): DayCount {
     const dayCount: DayCount = { executed: 0, planned: 0 }
 
-    tasks.value.map(task => {
+    day.tasks.map(task => {
       dayCount.executed += task.pomodoros.filter(pomodoro => pomodoro.status == PomodoroStatus.Completed).length
-      dayCount.planned += task.pomodoros.length
+      if (task.status == TaskStatus.Pending) {
+        dayCount.planned += task.pomodoros.length
+      }
     })
 
     return dayCount
@@ -47,7 +63,7 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
     return { startedAt: startedAt.value, tasks: tasks.value, finishedAt: finishedAt.value }
   }
 
-  return { startedAt, finishedAt, tasks, getDayCount, saveTask, removeTask, reset, getCurrentDay }
+  return { startedAt, finishedAt, tasks, sortedTasks, getDayCount, saveTask, removeTask, reset, getCurrentDay }
 },
 {
   persist: true
