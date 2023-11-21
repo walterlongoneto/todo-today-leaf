@@ -67,7 +67,7 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: '/todo-today-leaf/',
+      // publicPath: '/',
       // analyze: true,
       // env: {},
       // rawDefine: {}
@@ -78,6 +78,8 @@ module.exports = configure(function (/* ctx */) {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
+
+      assetsDir: '/todo-today-leaf/assets/',
 
       vitePlugins: [
         ['@intlify/vite-plugin-vue-i18n', {
