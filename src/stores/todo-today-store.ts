@@ -15,10 +15,10 @@ export const useTodoTodayStore = defineStore('todoToday', () => {
       if (t1.status == t2.status) {
         return 0
       } else {
-        if (t1.status == TaskStatus.Completed && t2.status != TaskStatus.Completed) {
-          return 1
-        } else {
+        if (t1.status == TaskStatus.Pending) {
           return -1
+        } else {
+          return 1
         }
       }
     })
